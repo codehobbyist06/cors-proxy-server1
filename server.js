@@ -31,16 +31,18 @@ app.all('*', function (req, res, next) {
     }
     request(
       {
-        url: targetURL + req.url,
+        url: targetURL,
         method: req.method,
         json: req.body,
-        headers: { Authorization: req.header('Authorization') },
+        headers: {
+          Accept: 'application/json; version=1',
+        },
       },
       function (error, response, body) {
         if (error) {
           console.error('error: ' + response.statusCode);
         }
-        //                console.log(body);
+        console.log(body);
       }
     ).pipe(res);
   }
